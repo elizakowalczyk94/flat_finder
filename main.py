@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 import time
+from form_fill import FormFill
+
 
 CHECK_IN = "2022/04/30"
 CHECK_OUT = "2022/05/05"
@@ -18,12 +20,13 @@ apartments = soup.find_all(name="div", attrs={"data-testid": "property-card"})
 apartments_data = []
 for ap in apartments:
     ap_data = {}
-    ap_url = ap.find("a")
-    ap_data["url"] = ap_url.get("href")
-    ap_data["name"] = ap_url.getText()
+    address = ap.find(name="span", class_="a51f4b5adb")
+    ap_data["address"] = address.text.split("•")[0].strip()
     price = ap.find("span", class_="fcab3ed991 bd73d13072")
     ap_data["price"] = price.text.split()[0].replace(",", "")
     apartments_data.append(ap_data)
+    ap_url = ap.find("a")
+    ap_data["url"] = ap_url.get("href")
 
 print(apartments_data)
 time.sleep(2)
