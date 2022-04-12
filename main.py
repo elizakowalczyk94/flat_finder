@@ -3,7 +3,6 @@ import requests
 import time
 from form_fill import FormFill
 
-
 CHECK_IN = "2022/04/30"
 CHECK_OUT = "2022/05/05"
 checkin_y, checkin_m, checkin_d = CHECK_IN.split("/")
@@ -30,3 +29,6 @@ for ap in apartments:
 
 print(apartments_data)
 time.sleep(2)
+
+form_filler = FormFill()
+form_filler.fill_google_form(apartments_data)
