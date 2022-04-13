@@ -27,7 +27,7 @@ class FormFill:
         self.user_pswrd = os.getenv("PASSWORD")
 
     def __goto_another_form(self):
-        button = self.driver.find_element(by=By.LINK_TEXT, value="Prześlij kolejną odpowiedź")
+        button = self.driver.find_element(by=By.CSS_SELECTOR, value="div.c2gzEf a")
         button.click()
 
     def __wait_for_elem(self, css_value: str):
