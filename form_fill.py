@@ -35,20 +35,20 @@ class FormFill:
             expected_conditions.element_to_be_clickable((By.CSS_SELECTOR, css_value)))
 
     def login(self):
+        # Cannot login because of Google security system!
         self.driver.get(LOGIN_URL)
         self.__wait_for_elem("input.whsOnd.zHQkBf")
         email_input = self.driver.find_element(by=By.CSS_SELECTOR, value="input.whsOnd.zHQkBf")
         email_input.send_keys(self.user_email)
         email_input.send_keys(Keys.ENTER)
-        # Cannot login because of Google security system
 
     def fill_google_form(self, apartments_data_list):
-        for apartment in apartments_data_list:
+        for i in range(len(apartments_data_list) - 1):
             self.__wait_for_elem("input.whsOnd.zHQkBf")
             form_inputs = self.driver.find_elements(by=By.CSS_SELECTOR, value="input.whsOnd.zHQkBf")
-            form_inputs[0].send_keys(apartment["address"])
-            form_inputs[1].send_keys(apartment["price"])
-            form_inputs[2].send_keys(apartment["url"])
+            form_inputs[0].send_keys(apartments_data_list[i]["address"])
+            form_inputs[1].send_keys(apartments_data_list[i]["price"])
+            form_inputs[2].send_keys(apartments_data_list[i]["url"])
             time.sleep(1)
             submit_button = self.driver.find_element(by=By.CSS_SELECTOR, value="div.uArJ5e.UQuaGc.Y5sE8d.VkkpIf.NqnGTe")
             submit_button.click()
