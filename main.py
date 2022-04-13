@@ -10,10 +10,8 @@ booking_apartments = booking_finder.find_apartments()
 print(booking_apartments)
 
 form_filler = FormFill()
-# !!!!!
-# form_filler.login() # Can't login because of Google security system, can't generate spreadsheet with form answers
-# !!!!!
+# form_filler.login() # Can't login because of Google security system.
 form_filler.fill_google_form(booking_apartments)
-form_filler.create_spreadsheet()
+# form_filler.create_spreadsheet() # Can't generate spreadsheet with form answers, because user not logged in.
 time.sleep(5)
 form_filler.quit_chrome()
